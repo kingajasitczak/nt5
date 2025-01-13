@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DNS System and Mail System Overview</title>
+	<link rel="icon" href="favicon.ico" type="image/x-icon">
+    <style>
+        /* General Styles */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 20;
+            padding: 20;
+            background-color: #d5acff;
+            color: #333;
+            line-height: 1.6;
+        }
+		
+		h1 {
+			color: #ffffff;
+            font-weight: 600;
+		}
+		
+        h2, h3 {
+            color: #882cdf;
+            font-weight: 600;
+        }
+
+        h1 {
+            text-align: center;
+            padding: 20px 0;
+            background-color: #882cdf;
+            margin: 0 0 20px;
+			border-radius: 8px;
+        }
+
+        h2 {
+            margin-top: 30px;
+            margin-bottom: 10px;
+            border-bottom: 2px solid #882cdf;
+            padding-bottom: 5px;
+        }
+
+        h3 {
+            margin-top: 20px;
+            font-size: 1.25rem;
+        }
+
+        /* Section and Content Styling */
+        section {
+            margin: 0 auto;
+            max-width: 800px;
+            background: #efddff;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        ul {
+            padding-left: 20px;
+            margin: 10px 0;
+        }
+
+        ul li {
+            margin: 5px 0;
+        }
+
+        p {
+            margin: 10px 0;
+        }
+
+        pre {
+            background-color: #f4f4f4;
+            color: #333;
+            padding: 10px;
+            border-left: 5px solid #1a73e8;
+            border-radius: 5px;
+            overflow-x: auto;
+            font-family: 'Courier New', Courier, monospace;
+        }
+
+        /* Link and Separator Styles */
+        a {
+            color: #1a73e8;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        hr {
+            border: 0;
+            border-top: 1px solid #ddd;
+            margin: 20px 0;
+        }
+
+        /* Highlight Code Sections */
+        .sub-section {
+            margin-left: 20px;
+        }
+		
+		code {
+            display: inline-block;
+            padding: 2px 4px;
+            background-color: #E0C0FF;
+            border-radius: 3px;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 10px;
+            margin-top: 20px;
+            background-color: #882cdf;
+            color: #ffffff;
+        }
+    </style>
+</head>
+<body>
+    <h1>DNS and Mail Systems</h1>
+
+    <section>
+        <h2>1.1 DNS System</h2>
+
+        <h3>1.1.1 List of Top-Level Domains (TLDs)</h3>
+        <p>TLDs are the last segment of a domain name after the last dot. They are categorized as follows:</p>
+        <ul>
+            <li>
+                <strong>Generic TLDs (gTLDs):</strong> 
+                Common domains open to the public and not tied to geography.
+                Examples: <code>.com</code>, <code>.org</code>, <code>.net</code>.
+            </li>
+            <li>
+                <strong>Country-Code TLDs (ccTLDs):</strong> 
+                Represent specific countries or regions.
+                Examples: <code>.us</code> (USA), <code>.in</code> (India), <code>.uk</code> (United Kingdom).
+            </li>
+            <li>
+                <strong>Sponsored TLDs (sTLDs):</strong> 
+                Managed by specific organizations for targeted purposes.
+                Examples: <code>.edu</code> (Education), <code>.gov</code> (Government), <code>.aero</code> (Aviation).
+            </li>
+            <li>
+                <strong>New gTLDs:</strong> 
+                Introduced for branding or descriptive purposes.
+                Examples: <code>.shop</code>, <code>.app</code>, <code>.tech</code>.
+            </li>
+            <li>
+                <strong>Infrastructure TLD:</strong> 
+                <code>.arpa</code> is used for technical purposes like reverse DNS lookups.
+            </li>
+        </ul>
+
+        <h3>1.1.2 Hierarchical Structure of DNS</h3>
+        <p>The Domain Name System (DNS) is structured like an inverted tree, as described below:</p>
+        <ul>
+            <li>
+                <strong>Root Level:</strong> 
+                The top of the hierarchy, represented by <code>.</code>, managed by global root servers.
+            </li>
+            <li>
+                <strong>Top-Level Domains (TLDs):</strong> 
+                Includes <code>.com</code>, <code>.org</code>, <code>.edu</code>. Managed by TLD-specific registrars.
+            </li>
+            <li>
+                <strong>Second-Level Domains:</strong> 
+                Domains registered by users, such as <code>example.com</code>.
+            </li>
+            <li>
+                <strong>Subdomains:</strong> 
+                Subsections of a domain, like <code>blog.example.com</code> or <code>mail.example.com</code>.
+            </li>
+        </ul>
+
+        <h3>DNS Queries</h3>
+        <ul>
+            <li>
+                <strong>Recursive Query:</strong> 
+                The resolver takes responsibility for contacting multiple DNS servers until the full answer is found.
+            </li>
+            <li>
+                <strong>Iterative Query:</strong> 
+                The resolver queries each DNS server step by step, receiving partial answers along the way.
+            </li>
+        </ul>
+
+        <h3>DNS Delegation</h3>
+        <ul>
+            <li>
+                <strong>Root Servers:</strong> 
+                Delegate authority to TLD servers for domains like <code>.com</code>.
+            </li>
+            <li>
+                <strong>TLD Servers:</strong> 
+                Delegate authority to authoritative servers for specific domains, such as <code>example.com</code>.
+            </li>
+            <li>
+                <strong>Authoritative Servers:</strong> 
+                Hold the definitive records for a domain and provide the final answers for queries.
+            </li>
+        </ul>
+
+        <h3>1.1.3 DNS Records and Reverse DNS</h3>
+        <p>DNS uses various record types to handle specific types of information:</p>
+        <ul>
+            <li><strong>A Record:</strong> Maps a domain to an IPv4 address.</li>
+            <li><strong>AAAA Record:</strong> Maps a domain to an IPv6 address.</li>
+            <li><strong>MX Record:</strong> Directs email to designated mail servers.</li>
+            <li><strong>CNAME Record:</strong> Points one domain to another domain.</li>
+            <li><strong>NS Record:</strong> Specifies the authoritative name servers for a domain.</li>
+            <li><strong>PTR Record:</strong> Used for reverse DNS, mapping IP addresses to domain names.</li>
+        </ul>
+        <p><strong>Reverse DNS:</strong> The process of translating an IP address back to its domain name using PTR records.</p>
+
+        <h3>1.1.4 Authoritative vs. Non-Authoritative Answers</h3>
+        <ul>
+            <li><strong>Authoritative Answer:</strong> Provided by a DNS server that holds the original, definitive records for a domain.</li>
+            <li><strong>Non-Authoritative Answer:</strong> Retrieved from a caching DNS server, storing previous query results.</li>
+        </ul>
+
+        <h3>1.1.5 DNS Resolver, Cache, and <code>/etc/hosts</code></h3>
+        <ul>
+            <li><strong>DNS Resolver:</strong> A system (often your ISP) that queries DNS servers to resolve domain names.</li>
+            <li><strong>DNS Cache:</strong> Temporarily stores query results to reduce repeated lookups.</li>
+            <li>
+                <strong><code>/etc/hosts</code> File:</strong> A local file for manual hostname-to-IP mappings. Overrides DNS for specified entries.
+            </li>
+        </ul>
+    </section>
+	<section>
+    <h2>1.2 Mail System</h2>
+
+    <h3>1.2.1 Email Protocols (POP3, IMAP, SMTP)</h3>
+    <p>Email protocols manage the transmission and access of emails between servers and clients:</p>
+    <ul>
+        <li>
+            <strong>SMTP (Simple Mail Transfer Protocol):</strong>
+            Used to send emails from a client to a mail server or between servers.
+            <ul>
+                <li><strong>Commands:</strong></li>
+                <li><code>HELO</code>: Identifies the sender to the server.</li>
+                <li><code>MAIL FROM</code>: Specifies the sender’s email address.</li>
+                <li><code>RCPT TO</code>: Specifies the recipient’s email address.</li>
+                <li><code>DATA</code>: Indicates the start of the email content.</li>
+            </ul>
+        </li>
+        <li>
+            <strong>POP3 (Post Office Protocol 3):</strong>
+            Downloads emails to the client and removes them from the server.
+            <ul>
+                <li><strong>Commands:</strong></li>
+                <li><code>USER</code>: Log in as a specific user.</li>
+                <li><code>PASS</code>: Provide the password.</li>
+                <li><code>RETR</code>: Retrieve a specific email.</li>
+                <li><code>DELE</code>: Delete an email.</li>
+            </ul>
+        </li>
+        <li>
+            <strong>IMAP (Internet Message Access Protocol):</strong>
+            Allows access and management of emails directly on the server.
+            <ul>
+                <li><strong>Commands:</strong></li>
+                <li><code>SELECT</code>: Select a mailbox.</li>
+                <li><code>FETCH</code>: Retrieve specific email content.</li>
+                <li><code>STORE</code>: Change email flags (e.g., mark as read).</li>
+                <li><code>DELETE</code>: Delete emails on the server.</li>
+            </ul>
+        </li>
+    </ul>
+
+    <h3>1.2.2 NNTP Protocol</h3>
+    <p><strong>Network News Transfer Protocol (NNTP):</strong> Used for accessing Usenet newsgroups. It allows users to post, read, and manage discussion threads.</p>
+
+    <h3>1.2.3 Email Mailbox, Parameters, Aliases, Address</h3>
+    <ul>
+        <li><strong>Mailbox:</strong> A storage space on the server for receiving and managing emails.</li>
+        <li><strong>Parameters:</strong> Include storage quota, retention period, and protocol support (POP3/IMAP).</li>
+        <li><strong>Aliases:</strong> Alternate email addresses that point to the same mailbox (e.g., <code>support@example.com</code> and <code>help@example.com</code>).</li>
+        <li><strong>Email Address:</strong> Follows the format <code>username@domain.com</code>.</li>
+    </ul>
+
+    <h3>1.2.4 Email Structure</h3>
+    <ul>
+        <li><strong>Header:</strong> Contains metadata such as <code>From</code>, <code>To</code>, <code>Subject</code>, and <code>Date</code>.</li>
+        <li><strong>Separator:</strong> A blank line (e.g., <code>\r\n\r\n</code>) marks the transition from the header to the body.</li>
+        <li><strong>Body:</strong> The main content of the email.</li>
+    </ul>
+
+    <h3>1.2.5 Attachments, Email Coding, MIME</h3>
+    <ul>
+        <li><strong>Attachments:</strong> Files like PDFs, images, or documents sent with an email.</li>
+        <li>
+            <strong>Email Coding:</strong> Uses encoding techniques (e.g., Base64) to transmit binary files over text-based protocols.
+        </li>
+        <li>
+            <strong>MIME (Multipurpose Internet Mail Extensions):</strong> Formats emails with attachments and multimedia content.
+            <ul>
+                <li>Example MIME Header: <code>Content-Type: text/plain; charset=UTF-8</code></li>
+                <li>Attachments use <code>Content-Disposition: attachment; filename="file.pdf"</code></li>
+            </ul>
+        </li>
+    </ul>
+
+    <h3>1.2.6 Mailing Lists and Email Gateways</h3>
+    <ul>
+        <li>
+            <strong>Mailing Lists:</strong> Automatically distributes emails to multiple subscribers.
+            Example: Newsletters, community updates.
+        </li>
+        <li>
+            <strong>Email Gateways:</strong> Bridges different email systems or formats, such as converting IMAP emails to proprietary formats.
+        </li>
+    </ul>
+
+    <h3>1.2.7 Email Security</h3>
+    <ul>
+        <li><strong>SSL/TLS:</strong> Encrypts email transmission between servers and clients, ensuring data security.</li>
+        <li><strong>PGP (Pretty Good Privacy):</strong> Provides email content encryption and sender authenticity verification.</li>
+        <li><strong>Digital Signatures:</strong> Ensure email integrity and verify sender identity.</li>
+    </ul>
+
+    <h3>1.2.8 Spam, Blacklists, Graylists, Spam Filtering</h3>
+    <ul>
+        <li><strong>Spam:</strong> Unsolicited bulk emails often containing advertisements or malicious content.</li>
+        <li><strong>Blacklists:</strong> Databases of blocked IPs or email addresses (e.g., maintained by services like Spamhaus).</li>
+        <li><strong>Graylists:</strong> Temporarily reject emails from unknown senders to check if they retry (a behavior of legitimate servers).</li>
+        <li><strong>Spam Filtering:</strong> Uses algorithms (e.g., Bayesian filtering) to detect and block spam emails.</li>
+    </ul>
+</section>
+
+<section>
+	<h2>2.1 DNS System</h2>
+	
+	<h3>2.1.1</h3>
+	<p>Display DNS settings on your computer using Control Panel and ipconfig. Find google DNS server and change DNS settings on your computer to use this server.</p>
+	<img src="img/img01.png" style="width: 80%;"><br>
+	
+	<h3>2.1.2. Using dig, host, nslookup find the following information:</h3>
+	<p>2.1.2.1. Domain names and corresponding IP addresses of computers in lodz.pl domain</p>
+	<img src="img/img02.png" style="width: 80%;"><br>
+	<img src="img/img03.png" style="width: 80%;"><br>
+	<img src="img/img04.png" style="width: 80%;"><br>
+	
+	<p>2.1.2.2. A computer somewhere in Europe, outside Lodz and find all the available information about DNS settings of this computer</p>
+	<img src="img/img05.png" style="width: 80%;"><br>
+	<img src="img/img06.png" style="width: 80%;"><br>
+	<img src="img/img07.png" style="width: 80%;"><br>
+	
+	<p>2.1.2.3. A computer somewhere outside Europe (eg. Exotic country) and find all the available information about DNS settings of this computer</p>
+	<img src="img/img08.png" style="width: 80%;"><br>
+	<img src="img/img09.png" style="width: 80%;"><br>
+	<img src="img/img10.png" style="width: 80%;"><br>
+	
+	<p>2.1.2.4. Verify DNS assignment for localhost</p>
+	<img src="img/img11.png" style="width: 80%;"><br>
+	<img src="img/img12.png" style="width: 80%;"><br>
+	<img src="img/img13.png" style="width: 80%;"><br>
+	
+	<p>2.1.2.5. Flush dns memory on your computer using ipconfig</p>
+	<img src="img/img14.png" style="width: 80%;"><br>
+	
+	<p>2.1.2.6. Change the file hosts in such a way that when you enter ifeXX.com the website msn.com will display (where XX is the number of your ife group).</p>
+	<img src="img/img15.png" style="width: 80%;"><br>
+	<img src="img/img16.png" style="width: 80%;"><br>
+	<img src="img/img17.png" style="width: 80%;"><br>
+
+	
+</section>
+
+    <footer>
+        <p>Alicja Jóźwiak 250342, Kinga Jasitczak 250340 | Information Technology</p>
+    </footer>
+</body>
+</html>
+
+
+
